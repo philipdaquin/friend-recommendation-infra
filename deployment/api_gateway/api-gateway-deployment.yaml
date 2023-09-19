@@ -13,12 +13,8 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: philipasd/api_gateway
+        image: philipasd/api_gateway:latest
         imagePullPolicy: Always
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 9090
 
