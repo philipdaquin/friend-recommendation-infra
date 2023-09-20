@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: zoo1
-          image: digitalwonderland/zookeeper
+          image: confluentinc/cp-zookeeper:7.0.1
           ports:
             - containerPort: 2181
           env:
@@ -27,14 +27,14 @@ metadata:
     app: zookeeper-1
 spec:
   ports:
-    - name: client
+    - name: leader
       port: 2181
       protocol: TCP
-    - name: follower
-      port: 2888
-      protocol: TCP
-    - name: leader
-      port: 3888
-      protocol: TCP
+    # - name: follower
+    #   port: 2888
+    #   protocol: TCP
+    # - name: client
+    #   port: 3888
+    #   protocol: TCP
   selector:
     app: zookeeper-1

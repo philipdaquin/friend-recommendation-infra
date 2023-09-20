@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  api-gateway-deployment
+  namespace: default
+  labels:
+    app:  api-gateway-deployment
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  api-gateway-deployment
+    spec:
+      containers:
+      - name:  api-gateway-deployment
+        image:  philipasd/api_gateway:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort:  9090
+          name:  api-gateway-deployment
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-service
+  namespace: default
+spec:
+  selector:
+    app: api-gateway-deployment
+  type: LoadBalancer
+  ports:
+  - name: api-gateway-service
+    protocol: TCP
+    port: 80 
+    targetPort: 9090 
