@@ -11,6 +11,8 @@ spec:
       labels:
         app: friend_deployment
     spec:
+      imagePullSecrets:
+        - name:  dockerconfigjson
       containers:
       - name: friend_deployment
         image: philipasd/friend_service
