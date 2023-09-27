@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name:  user-deployment
-        image:  philipasd/user_service:latest
+        image:  philipasd/user_service:6
         imagePullPolicy: Always
         ports:
         - containerPort:  7000
