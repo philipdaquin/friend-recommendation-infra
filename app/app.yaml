@@ -22,19 +22,3 @@ spec:
         ports:
         - containerPort:  80
           name:  nginx
----
-        
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: api-gateway-service
-  namespace: default
-spec:
-  selector:
-    app: nginx
-  type: LoadBalancer
-  ports:
-  - name: api-gateway-service
-    protocol: TCP
-    port: 80 
