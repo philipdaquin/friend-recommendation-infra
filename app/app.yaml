@@ -18,14 +18,12 @@ spec:
       containers:
       - name:  nginx
         image:  philipasd/app:v1.1.0
+        imagePullPolicy: Always
         ports:
         - containerPort:  80
           name:  nginx
 ---
-
-
         
----
 
 apiVersion: v1
 kind: Service
