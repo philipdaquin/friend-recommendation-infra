@@ -1,8 +1,9 @@
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  nginx
-  namespace: prod
+  name:  nginx-deployment
   labels:
     app:  nginx
 spec:
@@ -17,8 +18,7 @@ spec:
     spec:
       containers:
       - name:  nginx
-        image:  philipasd/app:v1.1.0
+        image:  philipasd/app
         imagePullPolicy: Always
         ports:
         - containerPort:  80
-          name:  nginx
