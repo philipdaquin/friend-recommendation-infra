@@ -2,11 +2,11 @@
 
 namespace: staging
 replicas:
-  - name: nginx-deployment
+  - name: app-deployment
     count: 2
 
 images: 
   - name: philipasd/app
-    newTag: v1.0.0
+    newTag: 0.0.1
 resources:
-  - ../../../app
+  - ../../../kustomisation
