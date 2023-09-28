@@ -22,7 +22,7 @@ metadata:
 spec:
   capacity:
     # PV storage capacity 
-    storage: 1Gi
+    storage: 8Gi
   # Db can write and read from volumes to multiple pods
   accessModes:
     - ReadWriteOnce
@@ -42,18 +42,14 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgresdb-claim
-  namespace: default
-  labels:
-    app: postgresdb-claim
+  name: db-postgresdb-claim
 spec:
   storageClassName: manual
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
-
+      storage: 8Gi
 
 ---
 # Database Config
@@ -63,18 +59,23 @@ spec:
 #
 #
 apiVersion: v1
+# Kind for kubernets ConfigMap
 kind: ConfigMap
 metadata:
-  name: postgresdb-config
+  # Name your ConfigMap
+  name: db-secret-credentials
   labels:
     app: postgresdb
 data:
+  # User DB
+  POSTGRES_DB: users
+  # Db user
   POSTGRES_USER: postgres
+
+  POSTGRES_HOST: localhost
+
+  # Db password
   POSTGRES_PASSWORD: password
-  POSTGRES_DB: db
-  init.sql: |
-    CREATE DATABASE IF NOT EXISTS user;
-    CREATE DATABASE IF NOT EXISTS friend;
 
 ---
 
@@ -97,13 +98,15 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: postgresdb
-        image: postgresdb:13
+        image: postgres
+        imagePullPolicy: Always
         ports:
         - containerPort: 5432
           name: postgresdb
         volumeMounts:
         - name: db-data
-          mountPath: /var/lib/postgres/data
+          # mountPath: /var/lib/postgres/data
+          mountPath: ~/apps/postgres:/var/lib/postgresql/data
       
       volumes:
         # Volume to claim 
