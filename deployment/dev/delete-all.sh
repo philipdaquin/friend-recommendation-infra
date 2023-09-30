@@ -9,6 +9,6 @@ cd zookeeper            && kubectl delete -f . && cd -
 
 
 cd friend_service       && bash delete.sh && cd -
-cd recommendation_deployment && bash delete.sh && cd -
+cd recommendation_service && bash delete.sh && cd -
 cd redis                && bash delete.sh && cd -
 cd user_service         && bash delete.sh && cd -

@@ -44,5 +44,6 @@ spec:
   selector:
     app: recommendation_deployment
   ports:
-  - port: 80
+  - name: http
+    port: 80
     targetPort: 7002

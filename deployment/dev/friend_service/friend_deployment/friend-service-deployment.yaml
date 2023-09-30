@@ -47,6 +47,6 @@ spec:
   selector:
     app: friend-deployment
   ports:
-  - name: friend-service
+  - name: http
     port: 80
     targetPort: 7001

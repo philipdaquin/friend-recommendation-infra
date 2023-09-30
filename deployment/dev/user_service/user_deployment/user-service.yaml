@@ -11,7 +11,7 @@ spec:
   selector:
     app: user-deployment
   ports:
-  - name: user-service
+  - name: http
     protocol: TCP
     port: 80
     targetPort: 7000
