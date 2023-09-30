@@ -13,19 +13,19 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api_gateway
+  name: api-gateway
 spec:
   selector:
     matchLabels:
-      app: api_gateway
+      app: api-gateway
   template:
     metadata:
       labels:
-        app: api_gateway
+        app: api-gateway
     spec:
       containers:
       - name: api-gateway
-        image: philipasd/api_gateway
+        image: philipasd/api_gateway:v0.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9090
@@ -40,11 +40,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: api_gateway_svc
+  name: api-gateway-svc
 spec:
   type: LoadBalancer
   selector:
-    app: api_gateway
+    app: api-gateway
   ports:
   - port: 80
     targetPort: 9090

@@ -39,7 +39,7 @@ spec:
         #   Error: Failed to fetch image
         #
         #
-        image:  philipasd/user_service:2
+        image:  philipasd/user_service:v0.0.0
         imagePullPolicy: Always
 
         ports:

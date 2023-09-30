@@ -11,19 +11,19 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: friend_deployment
+  name: friend-deployment
 spec:
   selector:
     matchLabels:
-      app: friend_deployment
+      app: friend-deployment
   template:
     metadata:
       labels:
-        app: friend_deployment
+        app: friend-deployment
     spec:
       containers:
-      - name: friend_deployment
-        image: philipasd/friend_service 
+      - name: friend-deployment
+        image: philipasd/friend_service:v0.0.0
         imagePullPolicy: Always
         
         ports:
@@ -41,11 +41,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: friend_service
+  name: friend-service
 spec:
   type: ClusterIP
   selector:
-    app: friend_deployment
+    app: friend-deployment
   ports:
   - name: friend-service
     port: 80
