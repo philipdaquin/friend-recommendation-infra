@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: eureka
-        image: philipasd/discovery-service:v0.0.0
+        image: philipasd/discovery_service:v0.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8761

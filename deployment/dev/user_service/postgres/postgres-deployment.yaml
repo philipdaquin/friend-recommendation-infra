@@ -106,7 +106,7 @@ spec:
         volumeMounts:
         - name: db-data
           # mountPath: /var/lib/postgres/data
-          mountPath: ~/apps/postgres:/var/lib/postgresql/data
+          mountPath: /var/lib/postgresql/data
       
       volumes:
         # Volume to claim 
