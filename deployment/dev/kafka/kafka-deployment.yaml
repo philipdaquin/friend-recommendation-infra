@@ -35,18 +35,7 @@ spec:
         app: kafka
         id: "0"
     spec: 
-      cs_resourcelimit:
-        resource_type: instance # required. choices: instance;ip_address;volume;snapshot;template;network;vpc;cpu;memory;primary_storage;secondary_storage. Type of the resource.
-        limit: -1 # not required. Maximum number of the resource. Default is unlimited C(-1).
-        domain:  # not required. Domain the resource is related to.
-        account:  # not required. Account the resource is related to.
-        project:  # not required. Name of the project the resource is related to.
-        api_key:  # not required. API key of the CloudStack API. If not given, the C(CLOUDSTACK_KEY) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes.
-        api_secret:  # not required. Secret key of the CloudStack API. If not set, the C(CLOUDSTACK_SECRET) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes.
-        api_url:  # not required. URL of the CloudStack API e.g. https://cloud.example.com/client/api. If not given, the C(CLOUDSTACK_ENDPOINT) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes.
-        api_http_method: get # not required. choices: get;post. HTTP method used to query the API endpoint. If not given, the C(CLOUDSTACK_METHOD) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes. Fallback value is C(get) if not specified.
-        api_timeout:  # not required. HTTP timeout in seconds. If not given, the C(CLOUDSTACK_TIMEOUT) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes. Fallback value is 10 seconds if not specified.
-        api_region: cloudstack # not required. Name of the ini section in the C(cloustack.ini) file. If not given, the C(CLOUDSTACK_REGION) env variable is considered.
+     
       containers:
       - name: kafka
         image: confluentinc/cp-kafka:latest
