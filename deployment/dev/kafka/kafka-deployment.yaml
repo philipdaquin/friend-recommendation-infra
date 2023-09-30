@@ -1,33 +1,116 @@
-kind: Deployment
-apiVersion: extensions/v1beta1
+
+
+---
+
+
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: kafka-broker1
+  name: kafka-configmap
+data:
+  KAFKA_BROKER_ID: "1"
+  KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+  KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+  KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka_broker:9091
+  KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+  KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: "1"
+  KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: "1"
+
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: kafka-broker0
 spec:
+  replicas: 2
+  selector:
+    matchLabels:
+        app: kafka
+        id: "0"
   template:
     metadata:
       labels:
         app: kafka
-        id: "1"
-    spec:
+        id: "0"
+    spec: 
+      cs_resourcelimit:
+        resource_type: instance # required. choices: instance;ip_address;volume;snapshot;template;network;vpc;cpu;memory;primary_storage;secondary_storage. Type of the resource.
+        limit: -1 # not required. Maximum number of the resource. Default is unlimited C(-1).
+        domain:  # not required. Domain the resource is related to.
+        account:  # not required. Account the resource is related to.
+        project:  # not required. Name of the project the resource is related to.
+        api_key:  # not required. API key of the CloudStack API. If not given, the C(CLOUDSTACK_KEY) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes.
+        api_secret:  # not required. Secret key of the CloudStack API. If not set, the C(CLOUDSTACK_SECRET) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes.
+        api_url:  # not required. URL of the CloudStack API e.g. https://cloud.example.com/client/api. If not given, the C(CLOUDSTACK_ENDPOINT) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes.
+        api_http_method: get # not required. choices: get;post. HTTP method used to query the API endpoint. If not given, the C(CLOUDSTACK_METHOD) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes. Fallback value is C(get) if not specified.
+        api_timeout:  # not required. HTTP timeout in seconds. If not given, the C(CLOUDSTACK_TIMEOUT) env variable is considered. As the last option, the value is taken from the ini config file, also see the notes. Fallback value is 10 seconds if not specified.
+        api_region: cloudstack # not required. Name of the ini section in the C(cloustack.ini) file. If not given, the C(CLOUDSTACK_REGION) env variable is considered.
       containers:
-        - name: kafka
-          image: wurstmeister/kafka
-          ports:
-            - containerPort: 9092
-          env:
-            - name: KAFKA_ADVERTISED_PORT
-              value: "9092"
-            - name: KAFKA_ADVERTISED_HOST_NAME
-              value: "kafka-service"
-            - name: KAFKA_ZOOKEEPER_CONNECT
-              value: zoo1:2181
-            - name: KAFKA_BROKER_ID
-              value: "1"
-            - name: KAFKA_CREATE_TOPICS
-              value: product-price:1:1
+      - name: kafka
+        image: confluentinc/cp-kafka:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9091
+
+        env:
+        - name:  KAFKA_BROKER_ID
+          valueFrom:
+            configMapKeyRef:
+              name:  kafka-configmap
+              key:  KAFKA_BROKER_ID
+
+        - name:  KAFKA_ZOOKEEPER_CONNECT
+          valueFrom:
+            configMapKeyRef:
+              name:  kafka-configmap
+              key:  KAFKA_ZOOKEEPER_CONNECT
+
+        - name:  KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+          valueFrom:
+            configMapKeyRef:
+              name:  kafka-configmap
+              key:  KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+
+        - name:  KAFKA_ADVERTISED_LISTENERS
+          valueFrom:
+            configMapKeyRef:
+              name:  kafka-configmap
+              key:  KAFKA_ADVERTISED_LISTENERS
+
+        - name:  KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+          valueFrom:
+            configMapKeyRef:
+              name:  kafka-configmap
+              key:  KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+
+        - name:  KAFKA_TRANSACTION_STATE_LOG_MIN_ISR
+          valueFrom:
+            configMapKeyRef:
+              name:  kafka-configmap
+              key:  KAFKA_TRANSACTION_STATE_LOG_MIN_ISR
+
+        - name:  KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR
+          valueFrom:
+            configMapKeyRef:
+              name:  kafka-configmap
+              key:  KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR
+
+        # env:
+        # - name: KAFKA_ADVERTISED_PORT
+        #   value: "30718"
+        # - name: KAFKA_ADVERTISED_HOST_NAME
+        #   value: 192.168.1.240
+        # - name: KAFKA_ZOOKEEPER_CONNECT
+        #   value: zoo1:2181
+        # - name: KAFKA_BROKER_ID
+        #   value: "0"
+        # - name: KAFKA_CREATE_TOPICS
+        #   value: admintome-test:1:1
+
 
 --- 
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -36,10 +119,10 @@ metadata:
     name: kafka
 spec:
   ports:
-    - port: 9092
-      name: kafka-port
-      protocol: TCP
+  - port: 9091
+    name: kafka-port
+    protocol: TCP
   selector:
     app: kafka
-    id: "1"
+    id: "0"
   type: LoadBalancer
