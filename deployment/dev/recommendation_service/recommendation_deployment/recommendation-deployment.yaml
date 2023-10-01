@@ -21,20 +21,20 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: recommendation_deployment
+  name: recommendation-deployment
   namespace: recommendation-service
 
 spec:
   selector:
     matchLabels:
-      app: recommendation_deployment
+      app: recommendation-deployment
   template:
     metadata:
       labels:
-        app: recommendation_deployment
+        app: recommendation-deployment
     spec:
       containers:
-      - name: recommendation_deployment
+      - name: recommendation-deployment
         image: philipasd/recommendation_service:v0.0.0
         imagePullPolicy: Always
         ports:
@@ -51,12 +51,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: recommendation_service
+  name: recommendation_-ervice
   namespace: recommendation-service
 
 spec:
   selector:
-    app: recommendation_deployment
+    app: recommendation-deployment
   ports:
   - name: http
     port: 80
