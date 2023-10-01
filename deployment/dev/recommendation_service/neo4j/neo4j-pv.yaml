@@ -2,6 +2,8 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: neo4j-data-storage
+  namespace: default
+
   labels:
     type: local
     app: neo4j
@@ -19,6 +21,8 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: neo4j-plugin-storage
+  namespace: default
+
   labels:
     type: local
     app: neo4j

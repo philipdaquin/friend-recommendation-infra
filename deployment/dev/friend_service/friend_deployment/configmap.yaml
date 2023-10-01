@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: friend-configmap
-  namespace: default
+  namespace: friend-service
 
 data:
   server.port: "7001"

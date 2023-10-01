@@ -10,22 +10,15 @@
 # can access and use it anytime. 
 # - When deploying a db service to k8s, a pod is set to a volume to persist your data 
 #
-#
 
-
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: postgres-db
-
----
 
 
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: postgresdb-volume
+  namespace: postgres-db
+
   labels:
     type: local
     app: postgresdb
@@ -54,6 +47,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: db-postgresdb-claim
+  namespace: postgres-db
+
 spec:
   storageClassName: manual
   accessModes:
@@ -75,6 +70,8 @@ kind: ConfigMap
 metadata:
   # Name your ConfigMap
   name: db-secret-credentials
+  namespace: postgres-db
+
   labels:
     app: postgresdb
 data:
@@ -94,7 +91,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgresdb
-  namespace: default
+  namespace: postgres-db
+
 spec:
   selector:
     matchLabels:
@@ -140,6 +138,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgresdb
+  namespace: postgres-db
+
   labels:
     app: postgresdb
 spec:
