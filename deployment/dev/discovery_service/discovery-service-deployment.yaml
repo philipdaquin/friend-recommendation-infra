@@ -1,4 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  eureka
 
+---
 
 apiVersion: apps/v1
 kind: StatefulSet
@@ -29,7 +34,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: eureka
-  namespace: default
+  namespace: eureka
   
 spec:
   selector:
@@ -48,7 +53,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: eureka-lb
-  namespace: default
+  namespace: eureka
 spec:
   selector:
     app: eureka-lb
