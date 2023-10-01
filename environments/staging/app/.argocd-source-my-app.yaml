@@ -1,3 +1,0 @@
-kustomize:
-  images:
-  - philipasd/app:v1.2.7

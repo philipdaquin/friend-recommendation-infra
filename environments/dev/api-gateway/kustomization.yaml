@@ -1,0 +1,12 @@
+---
+
+namespace: dev
+replicas:
+  - name: api-gateway
+    count: 2
+
+images: 
+  - name: philipasd/app_gateway
+    newTag: 0.0.1
+resources:
+  - ../../../deployment/dev/api_gateway

@@ -3,8 +3,6 @@ kind: Namespace
 metadata:
   name:  api-gateway
 
-
-
 ---
 apiVersion: v1
 kind: ConfigMap
