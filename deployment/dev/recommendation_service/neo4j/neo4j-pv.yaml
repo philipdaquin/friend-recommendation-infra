@@ -2,7 +2,7 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: neo4j-data-storage
-  namespace: recommendation-service
+  namespace: neo4j
 
   labels:
     type: local
@@ -21,7 +21,7 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: neo4j-plugin-storage
-  namespace: recommendation-service
+  namespace: neo4j
 
   labels:
     type: local

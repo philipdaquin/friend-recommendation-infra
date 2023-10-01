@@ -12,6 +12,11 @@
 #
 
 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  postgres-db
+---
 
 apiVersion: v1
 kind: PersistentVolume
