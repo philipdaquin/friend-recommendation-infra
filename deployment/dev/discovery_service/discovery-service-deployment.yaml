@@ -29,7 +29,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: eureka
-  namespace: eureka
+  namespace: default
   
 spec:
   selector:
@@ -48,7 +48,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: eureka-lb
-  namespace: eureka
+  namespace: default
 spec:
   selector:
     app: eureka-lb
