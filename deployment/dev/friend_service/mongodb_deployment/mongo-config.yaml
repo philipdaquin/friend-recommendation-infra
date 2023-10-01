@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mongo-init
-  namespace: friend-service
+  namespace: mongo-service
 
 data:
   init.sh: |
