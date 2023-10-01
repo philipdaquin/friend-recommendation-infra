@@ -1,0 +1,9 @@
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: friend-configmap
+data:
+  server.port: "7001"
+  SPRING_PROFILES_ACTIVE: docker
