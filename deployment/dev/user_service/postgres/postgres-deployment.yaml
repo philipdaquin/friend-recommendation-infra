@@ -11,6 +11,17 @@
 # - When deploying a db service to k8s, a pod is set to a volume to persist your data 
 #
 #
+
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: postgres-db
+
+---
+
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
