@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: philipasd/api_gateway
+        image: philipasd/api_gateway:0.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9090
