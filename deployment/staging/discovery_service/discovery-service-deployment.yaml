@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  eureka
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eureka
+  namespace: eureka
+spec:
+  selector:
+    matchLabels:
+      app: eureka # has to match .spec.template.metadata.labels
+  serviceName: "eureka"
+  replicas: 1 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: eureka # has to match .spec.selector.matchLabels
+    spec:
+      containers:
+      - name: eureka
+        image: philipasd/discovery_service:v0.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8761
+---
+
+# Headless Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka
+  namespace: eureka
+  
+spec:
+  selector:
+    app: eureka
+  type: ClusterIP
+  ports:
+  - name: eureka
+    protocol: TCP
+    port: 80
+    targetPort: 8761
+
+---
+
+# Load balancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-lb
+  namespace: eureka
+spec:
+  selector:
+    app: eureka-lb
+  type: NodePort
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8671
