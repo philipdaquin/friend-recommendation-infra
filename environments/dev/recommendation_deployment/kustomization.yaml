@@ -1,0 +1,12 @@
+---
+
+namespace: dev
+replicas:
+  - name: recommendation-service
+    count: 2
+
+images: 
+  - name: philipasd/recommendation_service
+    newTag: 0.0.0
+resources:
+  - ../../../deployment/dev/recommendation_service/recommendation_deployment

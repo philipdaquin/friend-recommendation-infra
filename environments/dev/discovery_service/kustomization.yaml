@@ -1,0 +1,12 @@
+---
+
+namespace: dev
+replicas:
+  - name: discovery-service
+    count: 2
+
+images: 
+  - name: philipasd/discovery_service
+    newTag: 0.0.0
+resources:
+  - ../../../deployment/dev/discovery_service

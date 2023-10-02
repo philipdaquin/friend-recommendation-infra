@@ -1,0 +1,12 @@
+---
+
+namespace: dev
+replicas:
+  - name: user-service
+    count: 2
+
+images: 
+  - name: philipasd/user_service
+    newTag: 0.0.0
+resources:
+  - ../../../deployment/dev/user_service/user_deployment

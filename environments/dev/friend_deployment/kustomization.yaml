@@ -1,0 +1,12 @@
+---
+
+namespace: dev
+replicas:
+  - name: friend-service
+    count: 2
+
+images: 
+  - name: philipasd/friend_service
+    newTag: 0.0.0
+resources:
+  - ../../../deployment/dev/friend_service/friend_deployment
