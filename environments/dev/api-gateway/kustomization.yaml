@@ -7,6 +7,6 @@ replicas:
 
 images: 
   - name: philipasd/app_gateway
-    newTag: 0.0.0
+    newTag: 0.0.1
 resources:
   - ../../../deployment/dev/api_gateway
