@@ -5,6 +5,6 @@ kind: Kustomization
 metadata:
   name: arbitrary
 resources:
-  - deployment.yaml
-  - namespace.yaml
-  - service.yaml
+  - mongo_svc.yaml
+  - mongo-config.yaml
+  - mongo-sts.yaml

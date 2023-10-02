@@ -5,6 +5,7 @@ kind: Kustomization
 metadata:
   name: arbitrary
 resources:
-  - deployment.yaml
-  - namespace.yaml
-  - service.yaml
+  - neo4j-deployment.yaml
+  - neo4j-pv.yaml
+  - neo4j-pvc.yaml
+  - neo4j-service.yaml

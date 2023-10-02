@@ -5,6 +5,4 @@ kind: Kustomization
 metadata:
   name: arbitrary
 resources:
-  - deployment.yaml
-  - namespace.yaml
-  - service.yaml
+  - discovery-service-deployment.yaml
