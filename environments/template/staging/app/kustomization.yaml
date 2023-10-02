@@ -9,4 +9,4 @@ images:
   - name: philipasd/app
     newTag: 0.0.1
 resources:
-  - ../../../app
+  - ../../../template
