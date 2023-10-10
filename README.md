@@ -9,10 +9,10 @@ This repo serves the single source of truth for facilitating the CD pipelines
 - CD is done via Argo CD
 - Automated Semantic Versioning [WIP]
 
-### Technology Stack 
+### Continous Deployment Stack
 - Argo CD
 - Kubernetes 
- 
 
-
-Kubernetes Deployment Manifest
+### Centralised Monitoring Service Stack 
+- Prometheus 
+- Grafana

@@ -35,7 +35,7 @@ spec:
         image: philipasd/api_gateway
         imagePullPolicy: Always
         ports:
-        - containerPort: 9090
+        - containerPort: 8090
         env:
         - name:  SPRING_PROFILES_ACTIVE
           valueFrom:
@@ -56,4 +56,4 @@ spec:
     app: api-gateway
   ports:
   - port: 80
-    targetPort: 9090
+    targetPort: 8090
