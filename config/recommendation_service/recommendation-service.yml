@@ -12,6 +12,8 @@ server:
     include-message: always
     include-binding-errors: always
 
+springdoc:
+  packagesToScan: com.example.recommendation_service
 management: 
   health:
     livenessstate:

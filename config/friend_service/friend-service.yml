@@ -9,6 +9,11 @@ server:
     include-message: always
     include-binding-errors: always
   port: 7001
+
+
+springdoc:
+  packagesToScan: com.example.friend_service
+
 management: 
   health:
     livenessstate:
