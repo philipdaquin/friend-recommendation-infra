@@ -10,14 +10,6 @@ spring:
     
     gateway:
       default-filters:
-      # - SaveSession
-      # - TokenRelay
-      # - name: RequestRateLimiter
-      #   args:
-      #     redis-rate-limiter:
-      #       replenishRate: 10
-      #       burstCapacity: 20
-      #       requestedTokens: 1
       httpclient:
         ssl:
           use-insecure-trust-manager: true
@@ -42,11 +34,6 @@ spring:
           args:
             name: user-service
             fallbackuri: forward:/user-service-fallback
-        # - name: RequestRateLimiter
-        #   args:
-        #     redis-rate-limiter.replenishRate: 10
-        #     redis-rate-limiter.burstCapacity: 10
-        #     redis-rate-limiter.requestedTokens: 1
         - name: Retry
           args:
             retries: 3
@@ -68,12 +55,6 @@ spring:
           args:
             name: user-service
             fallbackuri: forward:/friend-service-fallback
-        # - name: RequestRateLimiter
-        #   args:
-        #     redis-rate-limiter.replenishRate: 10
-        #     redis-rate-limiter.burstCapacity: 10
-        #     redis-rate-limiter.requestedTokens: 1
-
       - id: recommendation-service
         uri: lb://recommendation-service
         predicates:
@@ -87,12 +68,6 @@ spring:
           args:
             name: user-service
             fallbackuri: forward:/recommendation-service-fallback
-        # - name: RequestRateLimiter
-        #   args:
-        #     redis-rate-limiter.replenishRate: 10
-        #     redis-rate-limiter.burstCapacity: 10
-        #     redis-rate-limiter.requestedTokens: 1
-
 
       #
       # Retry
