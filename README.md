@@ -12,7 +12,24 @@ This repo serves the single source of truth for facilitating the CD pipelines
 ### Continous Deployment Stack
 - Argo CD
 - Kubernetes 
+- Dockerhub
+- Kustomise 
 
 ### Centralised Monitoring Service Stack 
-- Prometheus 
+- Prometheus Operator
 - Grafana
+- Promtail & Loki
+- Tempo 
+- cAdvisor
+- Ansible 
+- Open Telemetry
+- Alert Manager 
+- Thanos [Nice to Have]
+- Kube State Metrics
+
+### Centralised Application Configuration Management 
+- Api Gateway 
+- Discovery Service [wip]
+- Friend Service 
+- Recommendation Service 
+- User Service 
