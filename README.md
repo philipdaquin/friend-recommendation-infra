@@ -1,5 +1,5 @@
 
-# Friend Recommendation Kubernetes Manifest Files [POC]
+# Friend Recommendation Config Management / K8s Manifests [POC]
 **Actively Tracked by Argo CD Image Updater**
 
 This repo serves the single source of truth for facilitating the CD pipelines
