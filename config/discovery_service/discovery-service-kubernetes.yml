@@ -1,0 +1,8 @@
+# Profile: kubernetes
+spring:
+  config:
+    activate:
+      on-profile: kubernetes
+  eureka:
+    instance:
+      prefer-ip-address: true
