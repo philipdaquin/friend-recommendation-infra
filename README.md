@@ -2,12 +2,10 @@
 # Friend Recommendation Config Management / K8s Manifests [POC]
 **Actively Tracked by Argo CD Image Updater**
 
-This repo serves the single source of truth for facilitating the CD pipelines
-
-- Create a Jenkins pipeline with GitOps to deploy code into a Kubernetes Cluster
-- CI is done via Jenkins 
-- CD is done via Argo CD
-- Automated Semantic Versioning [WIP]
+This repo serves the single source of truth for facilitating:
+- Configuration Management for each services 
+- Kubernetes Manifests
+- App lifecycle
 
 ### Continous Deployment Stack
 - Argo CD
@@ -15,7 +13,13 @@ This repo serves the single source of truth for facilitating the CD pipelines
 - Dockerhub
 - Kustomise 
 
-### Centralised Monitoring Service Stack 
+### Centralised Monitoring, Alerting, Logging, Traces Service Stack 
+TO DO:
+- Integrate Argo CD with all monitoring services 
+- Simplify deployment alongside the core infrastructure
+
+----
+Stack: 
 - Prometheus Operator
 - Grafana
 - Promtail & Loki
