@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: friend-deployment
-        image: philipasd/friend_service:v0.0.0
+        image: philipasd/friend_service
         imagePullPolicy: Always
         
         ports:

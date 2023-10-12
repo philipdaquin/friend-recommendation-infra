@@ -35,7 +35,7 @@ spec:
   selector:
     matchLabels:
       app: user-deployment
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -48,7 +48,7 @@ spec:
         #   Error: Failed to fetch image
         #
         #
-        image:  philipasd/user_service:v0.0.0
+        image:  philipasd/user_service
         imagePullPolicy: Always
 
         ports:

@@ -1,0 +1,12 @@
+---
+
+namespace: dev
+replicas:
+  - name: api-gateway
+    count: 2
+
+images: 
+  - name: philipasd/config_service
+    newTag: 0.0.0
+resources:
+  - ../../../deployment/dev/config_service

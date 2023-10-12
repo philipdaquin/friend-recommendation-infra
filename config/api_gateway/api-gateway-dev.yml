@@ -13,7 +13,6 @@ spring:
           enabled: true
       
       routes:
-      # Id - Every route requires a unique identifer 
       - id: user-service
         uri: http://localhost:7000
         predicates:
@@ -36,7 +35,7 @@ spring:
               maxBackoff: 500ms
 
       - id: friend-service
-        uri: lb://friend-service
+        uri: http://localhost:7001
         predicates:
         - Path= /friend/**
         filters: 
@@ -49,7 +48,7 @@ spring:
             name: user-service
             fallbackuri: forward:/friend-service-fallback
       - id: recommendation-service
-        uri: lb://recommendation-service
+        uri: http://localhost:7002
         predicates:
         - Path= /recommendation/**
         filters: 
@@ -61,34 +60,34 @@ spring:
           args:
             name: user-service
             fallbackuri: forward:/recommendation-service-fallback
-      #
-      # Retry
-      # - 
-      #
-      - id: retry
-        uri: lb://api-gateway/8090
-        predicates:
-        - Path= /api-gateway/retry
-        filters:
-        - name: retry
-          args:
-            # Retries
-            # - The number of retries that should be attempted
-            retries: 3
-            # Http Method 
-            methods: GET
-            series: SERVER_ERROR
-            # Status
-            # - The HTTP status codes  
-            statuses: BAD_REQUEST, INTERNAL_SERVER_ERROR
-            exceptions: java.io.IOException, java.util.concurrent.TimeoutException, org.springframework.web.client.HttpServerErrorException
-            # Backoff
-            # - The configured exponential backoff for the retries 
-            backoff:
-              firstBackoff: 10ms 
-              maxBackoff: 500ms
-              factor: 3
-              basedOnPreviousValue: false
+      # #
+      # # Retry
+      # # - 
+      # #
+      # - id: retry
+      #   uri: lb://localhost/8090
+      #   predicates:
+      #   - Path= /api-gateway/retry
+      #   filters:
+      #   - name: retry
+      #     args:
+      #       # Retries
+      #       # - The number of retries that should be attempted
+      #       retries: 3
+      #       # Http Method 
+      #       methods: GET
+      #       series: SERVER_ERROR
+      #       # Status
+      #       # - The HTTP status codes  
+      #       statuses: BAD_REQUEST, INTERNAL_SERVER_ERROR
+      #       exceptions: java.io.IOException, java.util.concurrent.TimeoutException, org.springframework.web.client.HttpServerErrorException
+      #       # Backoff
+      #       # - The configured exponential backoff for the retries 
+      #       backoff:
+      #         firstBackoff: 10ms 
+      #         maxBackoff: 500ms
+      #         factor: 3
+      #         basedOnPreviousValue: false
         
 
 eureka:
