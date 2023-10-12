@@ -1,9 +1,10 @@
 
-# Friend Recommendation Config Management / K8s Manifests [POC]
+# Friend Recommendation Configuration Management / K8s Manifests [POC]
 **Actively Tracked by Argo CD Image Updater**
 
 This repo serves the single source of truth for facilitating:
-- Configuration Management for each services 
+- Configuration Management for each microservices
+- Configuration Monitoring Services 
 - Kubernetes Manifests
 - App lifecycle
 
