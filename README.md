@@ -5,10 +5,21 @@
 This repo serves the single source of truth for facilitating:
 - Configuration Management for each microservices
 - Configuration Monitoring Services 
-- Kubernetes Manifests
+- Kubernetes Manifests / Platform Management
 - App lifecycle
 
+### Platform Management / K8s Manifests
+![infra](https://github.com/philipdaquin/friend-recommendation-system/assets/85416532/3447dee2-149a-4fe5-b5aa-b30a2a6e6be5)
+- Config Service 
+- User Service
+- Recommendation Service
+- Friend Service
+- API Gateway
+- Discovery Service
+- Load Balancer
+
 ### Continous Deployment Stack
+![2023_10_13_16_33_02_System_Design_Figma](https://github.com/philipdaquin/friend-recommendation-system/assets/85416532/c3c4c5ef-280c-403d-90ce-fad86d3084b2)
 - Argo CD
 - Kubernetes 
 - Dockerhub
