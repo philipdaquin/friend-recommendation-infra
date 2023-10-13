@@ -15,8 +15,10 @@ This repo serves the single source of truth for facilitating:
 - Kustomise 
 
 ### Centralised Monitoring, Alerting, Logging, Traces Service Stack 
+**The current implementation is not INTEGRATED with the main deployment files**
+
 TO DO:
-- Integrate Argo CD with all monitoring services 
+- Integrate Argo CD with all monitoring services [WIP]
 - Simplify deployment alongside the core infrastructure
 
 ----
